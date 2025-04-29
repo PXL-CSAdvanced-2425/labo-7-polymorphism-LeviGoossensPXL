@@ -23,6 +23,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        itemsListBox.ItemsSource = _store.GetAllItems();
     }
 
     private void ImportButton_Click(object sender, RoutedEventArgs e)
@@ -36,23 +37,38 @@ public partial class MainWindow : Window
         if (openFileDialog.ShowDialog() == true)
         {
             _store.AddRange(FileHandler.ImportFile(openFileDialog.FileName));
-            itemsListBox.ItemsSource = _store.GetAllItems();
+            itemsListBox.Items.Refresh();
         }
     }
 
     private void RemoveButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        _store.RemoveItem((Machine)itemsListBox.SelectedItem);
+        itemsListBox.Items.Refresh();
     }
 
     private void ClearButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        _store.ClearAllItems();
+        itemsListBox.Items.Refresh();
     }
 
     private void UseButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (!int.TryParse(inputTextBox.Text, out int useMinutes))
+        {
+            MessageBox.Show("Please enter a valid number of minutes.");
+            return;
+        }
+
+        if (itemsListBox.SelectedItem is not Machine machine)
+        {
+            MessageBox.Show("Please select a machine.");
+            return;
+        }
+        machine.Use(useMinutes);
+        itemsListBox.Items.Refresh();
+        useButton.IsEnabled = !machine.OutOfUse;
     }
 
     private void SortButton_Click(object sender, RoutedEventArgs e)
@@ -67,6 +83,9 @@ public partial class MainWindow : Window
 
     private void itemsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (itemsListBox.SelectedItem is Machine machine)
+        {
+            useButton.IsEnabled = !machine.OutOfUse;
+        }
     }
 }

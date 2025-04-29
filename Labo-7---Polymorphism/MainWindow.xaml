@@ -9,9 +9,9 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Right">
             <Button Name="importButton" Content="Import" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="ImportButton_Click"/>
-            <Button Name="removeButton" IsEnabled="False" Content="Remove" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="RemoveButton_Click"/>
-            <Button Name="clearButton" IsEnabled="False" Content="Clear All" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="ClearButton_Click"/>
-            <Button Name="useButton" IsEnabled="False" Content="Use" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="UseButton_Click"/>
+            <Button Name="removeButton" Content="Remove" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="RemoveButton_Click"/>
+            <Button Name="clearButton" Content="Clear All" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="ClearButton_Click"/>
+            <Button Name="useButton" Content="Use" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="UseButton_Click"/>
             <Button Name="sortButton" IsEnabled="False" Content="Sort" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="SortButton_Click"/>
             <Button Name="filterButton" IsEnabled="False" Content="Filter" Width="100" Height="30" VerticalAlignment="Top" Margin="5" Click="FilterButton_Click"/>
         </StackPanel>
