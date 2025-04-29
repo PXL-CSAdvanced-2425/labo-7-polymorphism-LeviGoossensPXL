@@ -9,8 +9,7 @@ namespace Labo_7___Polymorphism.Entities
     public class General : Machine
     {
         public General(string name) : base(name)
-        {
-        }
+        {}
 
         protected override int LifeSpanCostPerMinute => 1;
 

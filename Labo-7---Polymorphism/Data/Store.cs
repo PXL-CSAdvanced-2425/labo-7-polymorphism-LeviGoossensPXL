@@ -14,6 +14,10 @@ namespace Labo_7___Polymorphism.Data
         {
             _data.Add(item);
         }
+        public void AddRange(IEnumerable<T> itemCollection)
+        {
+            _data.AddRange(itemCollection);
+        }
 
         public IEnumerable<T> GetAllItems()
         {

@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Labo_7___Polymorphism.Data;
+using Microsoft.Win32;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Labo_7___Polymorphism.Entities;
 
 namespace Labo_7___Polymorphism;
 
@@ -16,6 +19,7 @@ namespace Labo_7___Polymorphism;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private Store<Machine> _store { get; set; } = new Store<Machine>();
     public MainWindow()
     {
         InitializeComponent();
@@ -23,7 +27,17 @@ public partial class MainWindow : Window
 
     private void ImportButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+            Title = "Select a CSV file"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            _store.AddRange(FileHandler.ImportFile(openFileDialog.FileName));
+            itemsListBox.ItemsSource = _store.GetAllItems();
+        }
     }
 
     private void RemoveButton_Click(object sender, RoutedEventArgs e)
